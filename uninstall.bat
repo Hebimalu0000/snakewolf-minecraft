@@ -2,86 +2,67 @@
 chcp 932 > nul
 setlocal enabledelayedexpansion
 
-:: --- İ’è€–Ú ---
+:: --- è¨­å®šé …ç›® ---
 set "APP_NAME=Offline Developer Edition Minecraft"
 set "INSTALL_DIR=%LOCALAPPDATA%\ODE_Minecraft"
-set "UNINSTALLER_TEMP_DIR=%TEMP%\%APP_NAME%_Uninstaller"
-set "UNINSTALLER_NAME=temp_uninstall.bat"
+set "UNINSTALLER_PATH=%~f0"
+set "TEMP_DESTROYER=%TEMP%\ODE_Minecraft_Installer_destroy.bat"
 
-:: --- ƒvƒƒ“ƒvƒg ---
+:: --- ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆ ---
 echo.
-echo %APP_NAME% ‚ğƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚µ‚Ü‚·B
+echo %APP_NAME% ã‚’ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¾ã™ã€‚
 echo.
-echo ˆÈ‰º‚ÌƒfƒBƒŒƒNƒgƒŠ‚ÆƒVƒ‡[ƒgƒJƒbƒg‚ğíœ‚µ‚Ü‚·B
-echo   - ƒCƒ“ƒXƒg[ƒ‹ƒfƒBƒŒƒNƒgƒŠ: %INSTALL_DIR%
-echo   - ƒfƒXƒNƒgƒbƒv‚ÌƒVƒ‡[ƒgƒJƒbƒg
-echo   - ƒXƒ^[ƒgƒƒjƒ…[‚ÌƒVƒ‡[ƒgƒJƒbƒg
+echo ä»¥ä¸‹ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¨ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’å‰Šé™¤ã—ã¾ã™ã€‚
+echo   - ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª: %INSTALL_DIR%
+echo   - ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆ
+echo   - ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆ
 echo.
 
-set /p UNINSTALL_CONFIRM="–{“–‚ÉƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚µ‚Ü‚·‚©H (y/n) "
+set /p UNINSTALL_CONFIRM="æœ¬å½“ã«ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¾ã™ã‹ï¼Ÿ (y/n) "
 if /i not "!UNINSTALL_CONFIRM!"=="y" (
-    echo ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ğ’†~‚µ‚Ü‚µ‚½B
+    echo ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã‚’ä¸­æ­¢ã—ã¾ã—ãŸã€‚
     goto :eof
 )
 
-echo ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ğŠJn‚µ‚Ü‚·...
+echo ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã‚’é–‹å§‹ã—ã¾ã™...
 
-:: --- ©•ª©g‚ğˆêƒtƒHƒ‹ƒ_‚ÉƒRƒs[‚µ‚ÄÄ‹N“® ---
-if not exist "%UNINSTALLER_TEMP_DIR%" mkdir "%UNINSTALLER_TEMP_DIR%"
-copy "%~dpnx0" "%UNINSTALLER_TEMP_DIR%\%UNINSTALLER_NAME%" > nul
-
-echo ƒAƒ“ƒCƒ“ƒXƒg[ƒ‰[‚ğˆêƒtƒHƒ‹ƒ_‚ÅÄ‹N“®‚µ‚Ü‚·...
-start "" "%UNINSTALLER_TEMP_DIR%\%UNINSTALLER_NAME%" "%INSTALL_DIR%" "%APP_NAME%"
-goto :eof
-
-:main_procedure
-echo.
-echo ƒƒCƒ“‚ÌƒAƒ“ƒCƒ“ƒXƒg[ƒ‹ˆ—‚ğÀs’†...
-
-:: --- ƒCƒ“ƒXƒg[ƒ‹ƒfƒBƒŒƒNƒgƒŠ‚Ìíœ ---
-if exist "%~1" (
-    echo ƒCƒ“ƒXƒg[ƒ‹ƒfƒBƒŒƒNƒgƒŠ‚ğíœ’†: %~1
-    rmdir /s /q "%~1"
+:: --- ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å‰Šé™¤ ---
+if exist "%INSTALL_DIR%" (
+    echo ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å‰Šé™¤ä¸­: "%INSTALL_DIR%"
+    rmdir /s /q "%INSTALL_DIR%"
     if errorlevel 1 (
-        echo ƒGƒ‰[: ƒfƒBƒŒƒNƒgƒŠ‚Ìíœ‚É¸”s‚µ‚Ü‚µ‚½BŠÇ—ÒŒ ŒÀ‚ª•K—v‚©‚à‚µ‚ê‚Ü‚¹‚ñB
+        echo ã‚¨ãƒ©ãƒ¼: ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å‰Šé™¤ã«å¤±æ•—ã—ã¾ã—ãŸã€‚ç®¡ç†è€…æ¨©é™ãŒå¿…è¦ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ã€‚
     ) else (
-        echo ƒfƒBƒŒƒNƒgƒŠ‚Ìíœ‚ªŠ®—¹‚µ‚Ü‚µ‚½B
+        echo ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å‰Šé™¤ãŒå®Œäº†ã—ã¾ã—ãŸã€‚
     )
 ) else (
-    echo ƒCƒ“ƒXƒg[ƒ‹ƒfƒBƒŒƒNƒgƒŠ‚ÍŠù‚É‘¶İ‚µ‚Ü‚¹‚ñB
+    echo ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¯å­˜åœ¨ã—ã¾ã›ã‚“: "%INSTALL_DIR%"
 )
 
-:: --- ƒVƒ‡[ƒgƒJƒbƒg‚Ìíœ ---
-echo ƒVƒ‡[ƒgƒJƒbƒg‚ğíœ’†...
-set "LNK_NAME=%~2.lnk"
-set "UNINSTALL_LNK_NAME=ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹.lnk"
-set "START_MENU_FOLDER=%APPDATA%\Microsoft\Windows\Start Menu\Programs\%~2"
+:: --- ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã®å‰Šé™¤ ---
+echo ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’å‰Šé™¤ä¸­...
+set "LNK_NAME=%APP_NAME%.lnk"
+set "UNINSTALL_LNK_NAME=ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«.lnk"
+set "START_MENU_FOLDER=%APPDATA%\Microsoft\Windows\Start Menu\Programs\%APP_NAME%"
 
-:: ƒfƒXƒNƒgƒbƒv‚ÌƒVƒ‡[ƒgƒJƒbƒg‚ğíœ
 if exist "%USERPROFILE%\Desktop\%LNK_NAME%" (
     del "%USERPROFILE%\Desktop\%LNK_NAME%"
-    echo ƒfƒXƒNƒgƒbƒv‚ÌƒVƒ‡[ƒgƒJƒbƒg‚ğíœ‚µ‚Ü‚µ‚½B
+    echo ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚
+) else (
+    echo ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã¯å­˜åœ¨ã—ã¾ã›ã‚“: "%USERPROFILE%\Desktop\%LNK_NAME%"
 )
 
-:: ƒXƒ^[ƒgƒƒjƒ…[‚ÌƒVƒ‡[ƒgƒJƒbƒg‚ÆƒtƒHƒ‹ƒ_‚ğíœ
 if exist "%START_MENU_FOLDER%" (
     del "%START_MENU_FOLDER%\%LNK_NAME%" > nul 2>&1
     del "%START_MENU_FOLDER%\%UNINSTALL_LNK_NAME%" > nul 2>&1
-    rmdir "%START_MENU_FOLDER%"
-    echo ƒXƒ^[ƒgƒƒjƒ…[‚ÌƒVƒ‡[ƒgƒJƒbƒg‚ÆƒtƒHƒ‹ƒ_‚ğíœ‚µ‚Ü‚µ‚½B
+    rmdir "%START_MENU_FOLDER%" > nul 2>&1
+    echo ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã¨ãƒ•ã‚©ãƒ«ãƒ€ã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚
+) else (
+    echo ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ•ã‚©ãƒ«ãƒ€ã¯å­˜åœ¨ã—ã¾ã›ã‚“: "%START_MENU_FOLDER%"
 )
 
 echo.
-echo %~2 ‚ÌƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ªŠ®—¹‚µ‚Ü‚µ‚½B
-
-:: --- ©ŒÈíœ ---
-echo ƒAƒ“ƒCƒ“ƒXƒg[ƒ‰[‚ğ©ŒÈíœ‚µ‚Ü‚·...
-(
-    echo @ping 127.0.0.1 -n 2 > nul
-    echo @del "%~dpnx0"
-    echo @rmdir /s /q "%UNINSTALLER_TEMP_DIR%"
-) > "%TEMP%\self_destruct.bat"
-start "" /b "%TEMP%\self_destruct.bat"
+echo %APP_NAME% ã®ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ãŒå®Œäº†ã—ã¾ã—ãŸã€‚
 
 echo.
 pause
