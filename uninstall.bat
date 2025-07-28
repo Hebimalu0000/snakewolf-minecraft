@@ -1,5 +1,5 @@
 @echo off
-chcp 932 > nul
+chcp 65001 > nul
 setlocal enabledelayedexpansion
 
 :: --- 設定項目 ---
